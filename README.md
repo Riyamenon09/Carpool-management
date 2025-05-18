@@ -1,6 +1,6 @@
 🚗 Carpooling Web Application | Flask & SQLite
 
-This is a full-stack web app built to make carpooling easier and more efficient. Using **Flask (Python)** for the backend and **SQLite** for data storage, the app lets users sign up, log in, book rides, and view their ride history — all within a clean and user-friendly interface.
+This is a full-stack web app built to make carpooling easier and more efficient. Using **Flask (Python)** for the backend and **SQLite** for data storage, it let users sign up, log in, book rides, and view their ride history — all within a clean and user-friendly interface.
 
 ---
 
