@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #343a40;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Booked Rides</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ride ID</th>
+          <th>Driver Name</th>
+          <th>Fare</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Booked At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>{{ book['id'] }}</td>
+          <td>{{ book['ride_id'] }}</td>
+          <td>{{ book['driver_name'] }}</td>
+          <td>{{ book['fare'] }}</td>
+          <td>{{ book['source'] }}</td>
+          <td>{{ book['destination'] }}</td>
+          <td>{{ book['created_at'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

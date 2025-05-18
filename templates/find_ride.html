@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find a Ride</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e6e6fa;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 15px;
+        color: white;
+        font-size: 24px;
+        text-align: left;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .navbar h1 {
+        color: #fff;
+        text-decoration: none;
+        font-size: 2.2rem;
+        margin-left: 28px;
+      }
+
+      .main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+        margin-top: 80px;
+      }
+
+      .side-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .side-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        flex: 2;
+        background-color: white;
+        padding: 20px 40px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        text-align: center;
+      }
+      h2 {
+        font-size: 24px;
+        color: #333;
+        margin-top: 0;
+      }
+      .im {
+        height: 330px;
+        width: 250px;
+        margin-left: 20px;
+      }
+      form {
+        margin-top: 20px;
+      }
+      label {
+        font-size: 14px;
+        color: #333;
+        display: block;
+        margin-top: 15px;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #ff9800;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #e68900;
+      }
+      label {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar"><h1>Find a Ride</h1></div>
+
+    <div class="main-content">
+      <div class="side-image">
+        <img src="static/images/i1.png" alt="Left Image" />
+      </div>
+
+      <div class="container">
+        <h2>Find a Ride</h2>
+        <form action="/search_rides" method="POST">
+          <label for="pickup_location">Pickup Location:</label>
+          <input
+            type="text"
+            id="pickup_location"
+            name="pickup_location"
+            required
+          />
+
+          <label for="destination_location">Destination Location:</label>
+          <input
+            type="text"
+            id="destination_location"
+            name="destination_location"
+            required
+          />
+
+          <label for="passengers">Number of Passengers:</label>
+          <input type="number" id="passengers" name="passengers" required />
+          <label>
+            <input type="checkbox" name="female_drivers" value="yes" />
+            Only show female drivers
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="side-image">
+        <img src="static/images/i2.png" alt="Right Image" class="im" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Ride</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <style>
+      .b1,
+      .b2 {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .b1:hover,
+      .b2:hover {
+        background-color: #0056b3;
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+      header {
+        background-color: #343a40;
+        color: #ffffff;
+        padding: 10px 20px;
+        text-align: left;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #ffffff;
+        display: inline-block;
+      }
+      main {
+        padding: 80px 20px 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #343a40;
+      }
+      .driver-info,
+      .contact-options,
+      .ride-details {
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+      .driver-details {
+        display: flex;
+        align-items: center;
+      }
+      .driver-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+      .driver-description {
+        flex: 1;
+      }
+      .rating-container {
+        display: flex;
+        align-items: center;
+      }
+      .star-rating {
+        color: #ffd700;
+        margin-left: 5px;
+      }
+      .star-rating .empty-star {
+        color: #d3d3d3;
+      }
+      .ride-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .ride-text {
+        flex: 1;
+        margin-right: 20px;
+      }
+      .car-image {
+        width: 150px;
+        height: auto;
+        border-radius: 8px;
+        margin-right: 1100px;
+      }
+      a {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      a:hover {
+        background-color: #0056b3;
+      }
+      footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #343a40;
+        color: white;
+        width: 100%;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Book a Ride</h1>
+    </header>
+
+    <main>
+      <section class="driver-info">
+        <h2>Driver Information</h2>
+        <div class="driver-details">
+          <img
+            src="{{ url_for('static', filename='images/' + ride.profile_pic) }}"
+            alt="Driver Profile Picture"
+            class="driver-pic"
+          />
+          <div class="driver-description">
+            <h3>{{ ride.driver_name }}</h3>
+            <p>Car: {{ ride.vehicle }}</p>
+            <p>License Plate: {{ ride.license_number }}</p>
+            <p class="rating-container">
+              Rating:
+              <span class="star-rating">
+                {% for _ in range(ride.full_stars) %}
+                <i class="fa-solid fa-star"></i>
+                {% endfor %} {% if ride.half_star %}
+                <i class="fa-solid fa-star-half-stroke"></i>
+                {% endif %} {% for _ in range(ride.empty_stars) %}
+                <i class="fa-regular fa-star empty-star"></i>
+                {% endfor %}
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-options">
+        <h2>Contact Driver</h2>
+        <p>Contact your driver directly:</p>
+        <p><i class="fa-solid fa-phone"></i>: {{ ride.contact_number }}</p>
+        <a href="tel:{{ ride.contact_number }}">Call Driver</a>
+      </section>
+
+      <section class="ride-details">
+        <div class="ride-text">
+          <h2>Ride Details</h2>
+          <p>Pickup Location: {{ ride.source }}</p>
+          <p>Destination: {{ ride.destination }}</p>
+          <p>Estimated Fare: ₹{{ ride.fare }}</p>
+
+          <form action="{{ url_for('confirm_booking') }}" method="POST">
+            <input type="hidden" name="ride_id" value="{{ ride.id }}" />
+            <input
+              type="hidden"
+              name="driver_name"
+              value="{{ ride.driver_name }}"
+            />
+            <input type="hidden" name="fare" value="{{ ride.fare }}" />
+            <input type="hidden" name="source" value="{{ ride.source }}" />
+            <input
+              type="hidden"
+              name="destination"
+              value="{{ ride.destination }}"
+            />
+
+            <div class="row">
+              <a
+                class="b1"
+                href="javascript:void(0);"
+                onclick="this.closest('form').submit()"
+                >Safety Check</a
+              >
+              <a
+                class="b1"
+                href="{{ url_for('payment', ride_id=ride.id, ride_drivername=ride.driver_name) }}"
+                >Proceed payment</a
+              >
+            </div>
+          </form>
+        </div>
+        <br />
+        <img
+          src="{{ url_for('static', filename='images/' + ride.vehicle_pic) }}"
+          alt="Car Image"
+          class="car-image"
+        />
+        <div class="row">
+          <a class="b2" href="{{ url_for('track') }}">Get notified</a>
+          <a
+            class="b2"
+            href="{{ ride.map }} {{ url_for('track') }}"
+            target="_blank"
+            >See in Map</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Carpool Management System</p>
+    </footer>
+  </body>
+</html>
