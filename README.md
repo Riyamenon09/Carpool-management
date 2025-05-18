@@ -1,31 +1,33 @@
-# Carpool-management
-This is a full-stack web application designed to simplify carpooling by connecting users for shared rides. Developed using Python (Flask) for the backend and SQLite for the database, the app provides a secure and intuitive experience for users to register, log in, book rides, and manage their ride history.
+# 🚗 Carpooling Web Application | Flask & SQLite
 
-🔧 Features
-User Registration & Login
+This is a full-stack web app built to make carpooling easier and more efficient. Using **Flask (Python)** for the backend and **SQLite** for data storage, the app lets users sign up, log in, book rides, and view their ride history — all within a clean and user-friendly interface.
 
-Secure registration with password hashing
+---
 
-Session-based login system for user persistence
+## 🔧 Key Features
 
-Ride Management
+### 👤 User Registration & Login
 
-Users can view available vehicles
+* Users can create accounts with secure, hashed passwords.
+* The app uses session-based login to keep users signed in across pages.
 
-Booking functionality with history tracking
+### 🚙 Ride Management
 
-Database Integration
+* Users can browse a list of available vehicles.
+* Rides can be booked directly through the app, and each user has access to their own booking history.
 
-Efficient use of SQLite for handling users, vehicles, and bookings
+### 🗄️ Database Integration
 
-User Interface
+* All user, vehicle, and booking data is stored and managed using **SQLite**.
+* The database is optimized for fast, reliable access and easy scalability.
 
-Clean and responsive pages using Flask’s Jinja2 templating engine
+### 🎨 User Interface
 
-Includes home, register, login, dashboard, vehicle, and about pages
+* The UI is built with Flask’s **Jinja2 templating engine**, offering a responsive and dynamic experience.
+* Key pages include: Home, Register, Login, Dashboard, Vehicles, and About.
 
-Security
+### 🔐 Security
 
-Passwords hashed using Werkzeug
+* Passwords are securely hashed using Werkzeug.
+* Sessions are safely managed with Flask's built-in features to protect user data.
 
-Session management with Flask's built-in tools
